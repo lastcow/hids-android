@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="edu.lastcow.hids"
+          android:versionCode="1"
+          android:versionName="1.0">
+    <uses-sdk android:minSdkVersion="17"/>
+
+    <permission android:name="edu.lastcow.hids.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+    <uses-permission android:name="edu.lastcow.hids.permission.C2D_MESSAGE" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!-- App receives GCM messages. -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+
+    <!-- GCM connects to Google Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- GCM requires a Google account. -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+
+    <!-- Get tasks permission. -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+
+    <!-- Keeps the processor from sleeping when a message is received. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- Network State Permissions to detect Internet status -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- Read logs -->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+
+    <application android:label="@string/app_name" android:icon="@drawable/ic_launcher">
+        <activity android:name="MainActivity"
+                  android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <service android:name=".GCMIntentService"/>
+        <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+                <category android:name="edu.lastcow.hids" />
+            </intent-filter>
+        </receiver>
+
+        <receiver android:name="edu.lastcow.hids.receiver.SystemCallReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="edu.lastcow.hids.SYSTEM_CALL_TASK_ACTION"/>
+                <action android:name="edu.lastcow.hids.SYSTEM_CALL_SEND_TO_SERVER_ACTION"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="edu.lastcow.hids.receiver.AppsInstalledCallReceiver">
+            <intent-filter>
+                <action android:name="edu.lastcow.hids.apps_installed" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="edu.lastcow.hids.receiver.AppsRunningCallReceiver">
+            <intent-filter>
+                <action android:name="edu.lastcow.hids.apps_running" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="edu.lastcow.hids.receiver.AppsSystemCallReceiver">
+            <intent-filter>
+                <action android:name="edu.lastcow.hids.apps_systemcall" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="edu.lastcow.hids.receiver.LogfileReceiver">
+            <intent-filter>
+                <action android:name="edu.lastcow.hids.apps_logfile" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name="edu.lastcow.hids.receiver.DeviceStatusCallReceiver">
+            <intent-filter>
+                <action android:name="edu.lastcow.hids.device_status" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".receiver.DeviceStatusCallReceiver"/>
+        <receiver android:name=".receiver.AppsInstalledCallReceiver"/>
+        <receiver android:name=".receiver.AppsRunningCallReceiver"/>
+        <receiver android:name=".receiver.AppsSystemCallReceiver"/>
+        <receiver android:name=".receiver.LogfileReceiver"/>
+    </application>
+</manifest>
