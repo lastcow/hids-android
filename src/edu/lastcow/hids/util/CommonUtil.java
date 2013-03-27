@@ -44,6 +44,8 @@ public class CommonUtil {
     public static final String SERVER_GET_APPS_LOGFILES = "edu.lastcow.hids.apps_logfile";
     public static final String SERVER_GET_DEVICE_STATUS = "edu.lastcow.hids.device_status";
 
+    // This is server IP.
+    //TODO save to shared preference.
     public static final String SERVER_IP = "192.168.1.107";
     // give your server registration url here
     public static final String SERVER_URL_REGISTER = "hids/rest/deviceaction/register";
