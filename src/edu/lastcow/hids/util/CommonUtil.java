@@ -46,7 +46,7 @@ public class CommonUtil {
 
     // This is server IP.
     //TODO save to shared preference.
-    public static final String SERVER_IP = "192.168.1.107";
+    public static final String SERVER_IP = "10.0.0.18";
     // give your server registration url here
     public static final String SERVER_URL_REGISTER = "hids/rest/deviceaction/register";
     public static final String SERVER_URL_REGISTER_PROTOCOL = "http";

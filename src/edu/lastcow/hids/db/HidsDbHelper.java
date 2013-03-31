@@ -27,11 +27,15 @@ public class HidsDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.v(this.getClass().getName(), "Creating database");
-        sqLiteDatabase.execSQL("create table white_list ( _id integer primary key autoincrement, whitename text not null)");
+//        sqLiteDatabase.execSQL("create table white_list ( _id integer primary key autoincrement, whitename text not null)");
+        sqLiteDatabase.execSQL("CREATE TABLE app (id integer primary key autoincrement, appName text not null, actionType text not null, count int null)");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS app");
+
+        // Recreate DB.
+        onCreate(sqLiteDatabase);
     }
 }

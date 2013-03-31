@@ -44,6 +44,7 @@ public class GCMIntentService extends GCMBaseIntentService {
         else if(message.equals(CommonUtil.MSG_MONITOR_RUNNING_APPS)){
             // Monitor all running apps
             requestIntent = new Intent(CommonUtil.SERVER_GET_APPS_SYSTEMCALL);
+            requestIntent.putExtra("processName", intent.getStringExtra("processName"));
         }
         else if(message.equals(CommonUtil.MSG_GET_LOGFILES)){
             // Get all logfiles and send it back
