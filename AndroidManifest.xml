@@ -87,5 +87,6 @@
         <receiver android:name=".receiver.AppsRunningCallReceiver"/>
         <receiver android:name=".receiver.AppsSystemCallReceiver"/>
         <receiver android:name=".receiver.LogfileReceiver"/>
+        <receiver android:name=".receiver.FileSendAlarmReceiver"/>
     </application>
 </manifest>

@@ -31,7 +31,7 @@ public class SystemCallMonitor extends AsyncTask<Map<String, Object>, Void, Stri
         //TODO check for white list
 
         // Monitoring the process.
-        Log.v("SystemCallMonitor", "System calling for " + pid);
+        Log.v("SystemCallMonitor", "Monitoring system calling for " + pid);
 
         //TODO  Check for the process name in whitelist or not
 
@@ -58,7 +58,7 @@ public class SystemCallMonitor extends AsyncTask<Map<String, Object>, Void, Stri
             args.add(fileName);
             suProcess = new ProcessBuilder(args).start();
 
-            Thread.sleep(30000);
+            Thread.sleep(1000 * 60 * 5);
 
             suProcess.destroy();
 
@@ -69,6 +69,8 @@ public class SystemCallMonitor extends AsyncTask<Map<String, Object>, Void, Stri
             //TODO permission issue.
             suProcess = null;
         }
+
+        // Send to server.
 
         // Return null
         return null;

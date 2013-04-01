@@ -22,6 +22,14 @@ public class CommonUtil {
     public static final String FILE_LOCATION = "/data/local/tmp/";
 
     /**
+     * Status code
+     */
+    // Scan
+    public static int STATUS_SCANNING = 1;
+    public static int STATUS_SCAN_PENDING = 2;
+    public static int STATUS_SCAN_FINISH = 3;
+
+    /**
      * Tag used on log messages.
      */
     static final String TAG = "HIDS GCM";

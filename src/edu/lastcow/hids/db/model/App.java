@@ -13,6 +13,8 @@ public class App {
     private String appName;
     private String actionType;
     private int count;
+    private String scanFileName;
+    private int status;
 
     public int getId() {
         return id;
@@ -44,5 +46,21 @@ public class App {
 
     public void setCount(int count) {
         this.count = count;
+    }
+
+    public String getScanFileName() {
+        return scanFileName;
+    }
+
+    public void setScanFileName(String scanFileName) {
+        this.scanFileName = scanFileName;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

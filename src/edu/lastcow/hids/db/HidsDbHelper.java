@@ -28,7 +28,7 @@ public class HidsDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         Log.v(this.getClass().getName(), "Creating database");
 //        sqLiteDatabase.execSQL("create table white_list ( _id integer primary key autoincrement, whitename text not null)");
-        sqLiteDatabase.execSQL("CREATE TABLE app (id integer primary key autoincrement, appName text not null, actionType text not null, count int null)");
+        sqLiteDatabase.execSQL("CREATE TABLE app (id integer primary key autoincrement, appName text not null, actionType text not null, count int null, scanFileName text null, status int null)");
     }
 
     @Override
