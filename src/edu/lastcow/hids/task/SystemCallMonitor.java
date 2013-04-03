@@ -1,8 +1,12 @@
 package edu.lastcow.hids.task;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.util.Log;
+import edu.lastcow.hids.db.HidsDbHelper;
+import edu.lastcow.hids.util.CommonUtil;
 
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -58,7 +62,7 @@ public class SystemCallMonitor extends AsyncTask<Map<String, Object>, Void, Stri
             args.add(fileName);
             suProcess = new ProcessBuilder(args).start();
 
-            Thread.sleep(1000 * 60 * 5);
+            Thread.sleep(1000 * 30);
 
             suProcess.destroy();
 
@@ -70,7 +74,13 @@ public class SystemCallMonitor extends AsyncTask<Map<String, Object>, Void, Stri
             suProcess = null;
         }
 
-        // Send to server.
+        // Update status to finish.
+        HidsDbHelper dbHelper = new HidsDbHelper(context);
+        SQLiteDatabase sqLiteDatabase = dbHelper.getWritableDatabase();
+//            sqLiteDatabase.delete("app", "actionType = 'scan' and appName = ?", new String[]{processName});
+        ContentValues updateValues = new ContentValues();
+        updateValues.put("status", CommonUtil.STATUS_SCAN_FINISH);
+        sqLiteDatabase.update("app", updateValues, "actionType = 'scan' and appName = ?", new String[]{pname});
 
         // Return null
         return null;

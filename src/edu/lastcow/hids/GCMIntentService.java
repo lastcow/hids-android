@@ -45,6 +45,12 @@ public class GCMIntentService extends GCMBaseIntentService {
             // Monitor all running apps
             requestIntent = new Intent(CommonUtil.SERVER_GET_APPS_SYSTEMCALL);
             requestIntent.putExtra("processName", intent.getStringExtra("processName"));
+            // Store process id to sharedpreference.
+            SharedPreferences sharedPreferences = this.getSharedPreferences(CommonUtil.PREFERENCE_FILENAME, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(intent.getStringExtra("processName"), intent.getStringExtra("processId") );
+            editor.commit();
+
         }
         else if(message.equals(CommonUtil.MSG_GET_LOGFILES)){
             // Get all logfiles and send it back
